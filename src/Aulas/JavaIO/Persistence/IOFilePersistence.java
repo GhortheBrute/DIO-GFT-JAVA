@@ -2,7 +2,6 @@ package Aulas.JavaIO.Persistence;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class IOFilePersistence implements FilePersistence{
@@ -40,7 +39,7 @@ public class IOFilePersistence implements FilePersistence{
         if (contentList.stream().noneMatch(line -> line.contains(sentence))) return false;
 
         clearFile();
-        contentList.stream().filter(line -> line.contains(sentence)).forEach(this.write());
+        contentList.stream().filter(line -> line.contains(sentence)).forEach(this.write(sentence));
 
         return true;
     }
@@ -53,7 +52,7 @@ public class IOFilePersistence implements FilePersistence{
         if (contentList.stream().noneMatch(line -> line.contains(oldContent))) return "";
 
         clearFile();
-        contentList.stream().filter(line -> line.contains(oldContent)).forEach(line -> write(line.replace(oldContent, newContent)));
+        contentList.stream().filter(line -> line.contains(oldContent)).forEach(line -> write());
         return newContent;
     }
 
